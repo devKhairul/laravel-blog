@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,27 +17,9 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [PostController::class, 'index'] );
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-    $posts = Post::latest();
-
-    if ( request('search') ) {
-        $posts->where('title', 'like', '%' . request('search') . '%')
-              ->orWhere('body', 'like', '%' . request('search') . '%');
-    }
-
-    return view('posts', [
-        'posts' => $posts->with('user', 'category')->get(),
-        'categories' => Category::all(),
-    ]);
-});
-
-Route::get('posts/{post:slug}', function(Post $post) {
-    return view('post', [
-        'post' => $post,
-        'categories' => Category::all(),
-    ]);
-});
 
 Route::get('category/{category:slug}', function(Category $category) {
     return view('category', [
