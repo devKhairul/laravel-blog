@@ -1,10 +1,12 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +21,15 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', [PostController::class, 'index'] );
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('category/{category:slug}', [CategoryController::class, 'show']);
 
-
-Route::get('category/{category:slug}', function(Category $category) {
-    return view('category', [
-        'posts' => $category->posts->load('user', 'category'),
-        'categories' => Category::all(),
-        'currentCategory'=> $category
-    ]);
-});
+// Route::get('category/{category:slug}', function(Category $category) {
+//     return view('category', [
+//         'posts' => $category->posts->load('user', 'category'),
+//         'categories' => Category::all(),
+//         'currentCategory'=> $category
+//     ]);
+// });
 
 Route::get('author/{author:username}', function(User $author) {
     return view('author', [
