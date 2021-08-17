@@ -1,28 +1,24 @@
 <x-layout>
+    @include('_posts-header')
 
-    <p class="text-3xl">All articles posted in this Category</p>
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
-    @foreach($posts as $post)
+        @if ($posts->count() )
 
+            <x-post-featured-card :post="$posts[0]" />
 
-        <article class="my-4">
-            <a href="/posts/{{ $post->slug }}">
-                <h1 class="text-2xl bold">
-                    {{ $post->title }}
-                </h1>
-            </a>
+            @if ($posts->count() > 1 )
+                <div class="lg:grid lg:grid-cols-6">
+                    @foreach ( $posts->skip(1) as $post )
+                        <x-post-card :post="$post" class="{{ $loop->iteration < 3 ? 'col-span-3' : 'col-span-2'  }}" />
+                    @endforeach
+                </div>
+            @endif
 
-            <p>
-                Written by <a href="/author/{{ $post->user->username }}" class="text-blue-700 underline">{{ $post->user->name }}</a> In
-                <a href="/category/{{ $post->category->slug }}" class="text-blue-700 underline">
-                    {{ $post->category->name }}
-                </a>
-            </p>
+        @else
+            <p class="text-center text-2xl">No posts found. Please check back later.</p>
+        @endif
 
-            <p>
-                {{ $post->body }}
-            </p>
-        </article>
+    </main>
 
-    @endforeach
 </x-layout>

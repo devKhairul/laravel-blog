@@ -18,24 +18,28 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('posts', [
-        'posts' => Post::latest()->with('category', 'user')->get()
+        'posts' => Post::latest()->with('category', 'user')->get(),
+        'categories' => Category::all(),
     ]);
 });
 
 Route::get('posts/{post:slug}', function(Post $post) {
     return view('post', [
-        'post' => $post
+        'post' => $post,
+        'categories' => Category::all(),
     ]);
 });
 
 Route::get('category/{category:slug}', function(Category $category) {
     return view('category', [
-        'posts' => $category->posts->load('user', 'category')
+        'posts' => $category->posts->load('user', 'category'),
+        'categories' => Category::all(),
     ]);
 });
 
 Route::get('author/{author:username}', function(User $author) {
     return view('author', [
-        'posts' => $author->posts->load('category')
+        'posts' => $author->posts->load('category'),
+        'categories' => Category::all(),
     ]);
 });
