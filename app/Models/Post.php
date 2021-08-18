@@ -30,10 +30,19 @@ class Post extends Model
 
     public function scopePosts($query, array $filters)
     {
+        // dd(request());
+
         $query->when( $filters['search'] ?? false, fn($query, $search) =>
             $query
                 ->where('title', 'like', '%' . $search . '%')
-                ->orWhere('body', 'like', '%' . $search . '%'));
+                ->orWhere('body', 'like', '%' . $search . '%')
+            );
+
+        $query->when( $filters['category'] ?? false, fn($query, $catSlug) =>
+            $query->whereHas('category', fn($query) =>
+                $query->where('slug', $catSlug)
+                )
+            );
     }
 
     /**
