@@ -28,9 +28,9 @@ class Post extends Model
      * Query Scopes
      */
 
-    public function scopePosts($query)
+    public function scopePosts($query, array $filters)
     {
-        if ( request('search') ) {
+        if ( $filters['search'] ?? false ) {
             $query
                 ->where('title', 'like', '%' . request('search') . '%')
                 ->orWhere('body', 'like', '%' . request('search') . '%');
