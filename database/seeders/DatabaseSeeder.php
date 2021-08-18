@@ -22,13 +22,32 @@ class DatabaseSeeder extends Seeder
             'username' => 'khairul'
         ]);
 
-        $category = Category::factory()->create();
-        $category = Category::factory()->create();
-        $category = Category::factory()->create();
+        $category1= Category::factory()->create([
+            'name' => 'Work',
+            'slug' => 'work'
+        ]);
+        $category2 = Category::factory()->create([
+            'name' => 'Business',
+            'slug' => 'business'
+        ]);
+        $category3 = Category::factory()->create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
 
-        Post::factory(15)->create([
+        Post::factory(10)->create([
             'user_id' => $user->id,
-            'category_id' => $category->id
+            'category_id' => $category1->id
+        ]);
+
+        Post::factory(10)->create([
+            'user_id' => $user->id,
+            'category_id' => $category2->id
+        ]);
+
+        Post::factory(10)->create([
+            'user_id' => $user->id,
+            'category_id' => $category3->id
         ]);
 
 
