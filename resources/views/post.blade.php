@@ -14,7 +14,9 @@
                 <div class="flex items-center lg:justify-center text-sm mt-4">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3 text-left">
-                        <h5 class="font-bold">{{ $post->user->name }}</h5>
+                        <a href="/?author={{ $post->user->username }}">
+                            <h5 class="font-bold">{{ $post->user->name }}</h5>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -42,7 +44,11 @@
                 </div>
 
                 <h1 class="font-bold text-3xl lg:text-4xl mb-10">
-                    {{ $post->title }}
+                    <a href="/posts/{{ $post->slug }}">
+                        <h1 class="text-3xl">
+                            {{ $post->title }}
+                        </h1>
+                    </a>
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">

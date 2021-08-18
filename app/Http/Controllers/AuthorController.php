@@ -8,11 +8,11 @@ use App\Models\User;
 
 class AuthorController extends Controller
 {
-    public function show(User $author)
-    {
-        return view('author', [
-            'posts' => $author->posts->load('category'),
-            'categories' => Category::all(),
-        ]);
-    }
+    // public function show(User $author)
+    // {
+    //     return view('author', [
+    //         'posts' => $author->posts->load('category'),
+    //         'categories' => Category::all(),
+    //     ]);
+    // }
 }

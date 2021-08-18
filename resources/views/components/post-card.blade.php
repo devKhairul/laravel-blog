@@ -13,9 +13,11 @@
             </div>
 
             <div class="mt-4">
-                <h1 class="text-3xl">
-                    {{ $post->title }}
-                </h1>
+                <a href="/posts/{{ $post->slug }}">
+                    <h1 class="text-3xl">
+                        {{ $post->title }}
+                    </h1>
+                </a>
 
                 <span class="mt-2 block text-gray-400 text-xs">
                    {{ $post->created_at->diffForHumans() }}
@@ -33,7 +35,7 @@
             <div class="flex items-center text-sm">
                 <img src="/images/lary-avatar.svg" alt="Lary avatar">
                 <div class="ml-3">
-                    <a href="/author/{{ $post->user->username }}">
+                    <a href="/?author={{ $post->user->username }}">
                         <h5 class="font-bold">{{ $post->user->name }}</h5>
                     </a>
                 </div>
