@@ -7,12 +7,11 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function show(Category $category)
-    {
-        return view('category', [
-            'posts' => $category->posts->load('user', 'category'),
-            'categories' => Category::all(),
-            'currentCategory'=> $category
-        ]);
-    }
+    // public function show(Category $category)
+    // {
+    //     return view('category', [
+    //         'posts' => $category->posts->load('user', 'category'),
+    //         'categories' => Category::all(),
+    //     ]);
+    // }
 }

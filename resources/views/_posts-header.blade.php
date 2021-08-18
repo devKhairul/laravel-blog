@@ -28,7 +28,7 @@
                     <a href="/" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white">All</a>
 
                     @foreach ($categories as $category )
-                        <a href="/category/{{ $category->slug }}"
+                        <a href="/?category={{ $category->slug }}"
                             class="block text-left px-3 text-sm leading-6
                             hover:bg-blue-500 focus:bg-blue-500
                             hover:text-white focus:text-white {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-blue-500 text-white' : '' }}">{{ ucwords($category->name) }}</a>
