@@ -24,14 +24,18 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0 flex items-center">
+                @auth
+                    <span class="text-xs text-blue-300 font-bold uppercase lg:pl-4 md:pl-4">Welcome, {{ auth()->user()->name  }}</span>
 
-                @guest
-                    <a href="/register" class="text-xs font-bold uppercase lg:pl-4 md:pl-4">Register</a>
+                    <form method="POST" action="/logout" class="text-sm font-semibold text-blue-500 ml-6">
+                        @csrf
+                        <input type="submit" class="bg-gray-300 hover:bg-blue-500 hover:text-white rounded-full p-2 cursor-pointer" value="Logout">
+                    </form>
                 @else
-                    <a href="/register" class="text-xs font-bold uppercase lg:pl-4 md:pl-4">Welcome, {{ auth()->user()->name  }}</a>
-                @endguest
+                    <a href="/register" class="text-xs font-bold uppercase lg:pl-4 md:pl-4">Register</a>
+                    <a href="/login" class="text-xs font-bold uppercase lg:pl-4 md:pl-4">Login</a>
+                @endauth
 
                 <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
