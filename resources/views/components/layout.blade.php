@@ -7,6 +7,15 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 
 <body style="font-family: Open Sans, sans-serif">
+    @if ( session()->has('success') )
+        <div x-data="{show: true}"
+             x-init="setTimeout( () => show = false, 4000 )"
+             x-show="show"
+             class="w-full text-center text-white text-1xl bg-green-500 rounded py-4">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
