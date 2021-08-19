@@ -16,7 +16,7 @@
                         <input type="text" name="name" placeholder="Full Name" class="block text-sm py-3 px-4 rounded w-full border outline-none focus-within:bg-yellow-100" />
                         <input type="email" name="email" placeholder="Email" class="block text-sm py-3 px-4 rounded w-full border outline-none focus-within:bg-yellow-100" />
                         <input type="password" name="password" placeholder="Password" class="block text-sm py-3 px-4 rounded w-full border outline-none focus-within:bg-yellow-100" />
-                        <input type="password" name="confirm_password" placeholder="Confirm Password" class="block text-sm py-3 px-4 rounded w-full border outline-none focus-within:bg-yellow-100" />
+                        <input type="password" name="password_confirmation" placeholder="Confirm Password" class="block text-sm py-3 px-4 rounded w-full border outline-none focus-within:bg-yellow-100" />
                       </div>
                       <div class="text-center mt-6">
                         <button class="py-3 w-full text-1xl text-white bg-blue-400 rounded">Create Account</button>
