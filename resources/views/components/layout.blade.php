@@ -25,8 +25,13 @@
             </div>
 
             <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase ">Home Page</a>
-                <a href="/register" class="text-xs font-bold uppercase lg:pl-4 md:pl-4">Create Account</a>
+                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+
+                @guest
+                    <a href="/register" class="text-xs font-bold uppercase lg:pl-4 md:pl-4">Register</a>
+                @else
+                    <a href="/register" class="text-xs font-bold uppercase lg:pl-4 md:pl-4">Welcome, {{ auth()->user()->name  }}</a>
+                @endguest
 
                 <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
