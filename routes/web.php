@@ -17,7 +17,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('register', [RegisterController::class, 'index']);
 
-// Route::post('register', [RegisterController::class, 'create']);
+Route::post('register', [RegisterController::class, 'create']);
 
 // Route::get('author/{author:username}', [AuthorController::class, 'show']);
 
