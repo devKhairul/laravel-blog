@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +14,10 @@ use App\Http\Controllers\AuthorController;
 Route::get('/', [PostController::class, 'index'] );
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+Route::get('register', [RegisterController::class, 'index']);
+
+// Route::post('register', [RegisterController::class, 'create']);
 
 // Route::get('author/{author:username}', [AuthorController::class, 'show']);
 
