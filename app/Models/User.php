@@ -29,6 +29,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Password hash mutator
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
