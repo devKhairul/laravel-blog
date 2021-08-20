@@ -55,6 +55,17 @@
                     <p>L{{ $post->body }}</p>
                 </div>
             </div>
+
+            <section class="col-span-8 col-start-5 mt-10 mt-10 space-y-6">
+                <h2 class="font-bold text-2xl my-4">Comments</h2>
+
+                <x-post-comment />
+                <x-post-comment />
+                <x-post-comment />
+                <x-post-comment />
+
+            </section>
         </article>
+
     </main>
 </x-layout>
