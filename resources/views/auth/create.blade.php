@@ -57,7 +57,7 @@
                       </div>
                       <div class="text-center mt-6">
                         <button class="py-3 w-full text-1xl text-white bg-blue-400 rounded">Create Account</button>
-                        <p class="mt-4 text-sm">Already Have An Account? <span class="underline cursor-pointer"> Sign In</span></p>
+                        <p class="mt-4 text-sm">Already Have An Account? <a href="/login" class="underline cursor-pointer"> Sign In</a></p>
                       </div>
                   </form>
 
