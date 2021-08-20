@@ -30,7 +30,6 @@ class Post extends Model
 
     public function scopePosts($query, array $filters)
     {
-        // dd(request());
 
         $query->when( $filters['search'] ?? false, fn($query, $search) =>
             $query->where(fn($query) =>
