@@ -29,6 +29,16 @@ class User extends Authenticatable
     ];
 
     /**
+     *
+     * Uppercase Name Accessor
+     */
+
+    public function getNameAttribute($name)
+    {
+        return ucwords($name);
+    }
+
+    /**
      * Password hash mutator
      */
     public function setPasswordAttribute($password)

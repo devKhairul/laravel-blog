@@ -18,9 +18,9 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('logout', [SessionsController::class, 'destroy']);
-Route::get('login', [SessionsController::class, 'login']);
-
+Route::get('login', [SessionsController::class, 'index'])->middleware('guest');
+Route::post('login', [SessionsController::class, 'login'])->middleware('guest');
+Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 // Route::get('author/{author:username}', [AuthorController::class, 'show']);
 // Route::get('category/{category:slug}', [CategoryController::class, 'show']);

@@ -26,7 +26,7 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <span class="text-xs text-blue-300 font-bold uppercase lg:pl-4 md:pl-4">Welcome, {{ auth()->user()->name  }}</span>
+                    <span class="text-xs text-blue-300 font-bold lg:pl-4 md:pl-4">Welcome, {{ auth()->user()->name  }}</span>
 
                     <form method="POST" action="/logout" class="text-sm font-semibold text-blue-500 ml-6">
                         @csrf
