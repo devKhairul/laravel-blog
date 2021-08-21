@@ -57,14 +57,18 @@
             </div>
 
             <section class="col-span-8 col-start-5 mt-10 mt-10 space-y-6">
-                <h2 class="font-bold text-2xl my-4">Comments</h2>
 
-                    @foreach ($comments as $comment )
+                    @if ( $post->comments->count() > 0)
+                        <h2 class="font-bold text-2xl my-4">Comments</h2>
+                    @endif
+
+
+                    @foreach ($post->comments as $comment )
                         <x-post-comment :comment="$comment" />
                     @endforeach
 
             </section>
-        </article>
+    </article>
 
     </main>
 </x-layout>

@@ -1,8 +1,8 @@
-@props('comment')
+@props(['comment'])
 
 <article class="flex bg-gray-100 rounded-xl border-gray-200 p-6">
     <div>
-        <img src="https://i.pravatar.cc/400" class="rounded" alt="Avatar">
+        <img src="https://i.pravatar.cc/?u={{ $comment->id }}" width="60" height="60" class="rounded" alt="Avatar">
     </div>
 
     <div class="ml-4">
