@@ -67,8 +67,12 @@
                             </header>
 
                             <div class="mt-6">
-                                <textarea name="body" class="w-full text-sm border-2 rounded p-2 focus:outline-none focus:ring" cols="30" rows="10" placeholder="Craft something beautiful"></textarea>
+                                <textarea name="body" class="w-full text-sm border-2 rounded p-2 focus:outline-none focus:ring" cols="30" rows="10" placeholder="Craft something beautiful" required></textarea>
                             </div>
+
+                            @error('body')
+                                <span class="text-sm text-red">{{ $message }}</span>
+                            @enderror
 
                             <div class="flex justify-end mt-4">
                                 <button type="submit" class="text-sm bg-blue-500 py-2 px-8 text-white rounded-full hover:bg-blue-700">Submit</button>
