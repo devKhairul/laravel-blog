@@ -73,12 +73,17 @@
                         </div>
                     </form>
 
+                    @if ( $post->comments->count() > 0)
+                        <h2 class="font-bold text-2xl my-4">Comments</h2>
+                    @endif
+
+
                     @foreach ($post->comments as $comment )
                         <x-post-comment :comment="$comment" />
                     @endforeach
 
             </section>
-        </article>
+    </article>
 
     </main>
 </x-layout>
