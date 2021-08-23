@@ -1,4 +1,4 @@
-@props('comment')
+@props(['comment'])
 
 <article class="flex bg-gray-100 rounded-xl border-gray-200 p-6">
     <div>
