@@ -15,6 +15,8 @@
                 </div>
 
                 {{ $posts->links() }}
+
+
             @endif
 
         @else
