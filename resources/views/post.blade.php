@@ -57,21 +57,29 @@
             </div>
 
             <section class="col-span-8 col-start-5 mt-10 mt-10 space-y-6">
-                    <form method="POST" class="border border-gray-200 p-6 rounded-xl">
-                        @csrf
-                        <header class="flex items-center">
-                            <img src="https://i.pravatar.cc/60?u={{ auth()->user()->id }}" width="40" height="40" class="rounded-full" alt="">
-                            <h2 class="ml-4">Want to participate?</h2>
-                        </header>
 
-                        <div class="mt-6">
-                            <textarea name="body" class="w-full text-sm border-2 rounded p-2 focus:outline-none focus:ring" cols="30" rows="10" placeholder="Craft something beautiful"></textarea>
-                        </div>
+                    @auth
+                        <form method="POST" action="/posts/{{ $post->slug }}/comments" class="border border-gray-200 p-6 rounded-xl">
+                            @csrf
+                            <header class="flex items-center">
+                                <img src="https://i.pravatar.cc/60?u={{ auth()->user()->id }}" width="40" height="40" class="rounded-full" alt="">
+                                <h2 class="ml-4">Want to participate?</h2>
+                            </header>
 
-                        <div class="flex justify-end mt-4">
-                            <button class="text-sm bg-blue-500 py-2 px-8 text-white rounded-full hover:bg-blue-700">Submit</button>
-                        </div>
-                    </form>
+                            <div class="mt-6">
+                                <textarea name="body" class="w-full text-sm border-2 rounded p-2 focus:outline-none focus:ring" cols="30" rows="10" placeholder="Craft something beautiful"></textarea>
+                            </div>
+
+                            <div class="flex justify-end mt-4">
+                                <button type="submit" class="text-sm bg-blue-500 py-2 px-8 text-white rounded-full hover:bg-blue-700">Submit</button>
+                            </div>
+                        </form>
+
+                    @else
+                    <p><a href="/register" class="text-blue-500">Register</a> or <a href="/login" class="text-blue-500">Login</a> to leave a comment</p>
+                    @endauth
+
+
 
                     @if ( $post->comments->count() > 0)
                         <h2 class="font-bold text-2xl my-4">Comments</h2>
