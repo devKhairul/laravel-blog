@@ -6,7 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PostCommentsController;
-use Illum\Exception\ValidationException;
+use Illuminate\Validation\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +30,12 @@ Route::post('newsletter', function () {
     ]);
 
     try {
-        $response = $mailchimp->lists->addListMember('98f346c61e', [
+        $mailchimp->lists->addListMember('98f346c61e', [
             'email_address' => request('email'),
             'status' => 'subscribed'
         ]);
-    } catch (\Exception $e) {
-        throw \Illuminate\Validation\ValidationException::withMessages([
+    } catch (Exception $e) {
+        throw ValidationException::withMessages([
             'email' => 'Hmm. That email address looks a little fishy. Please try again'
         ]);
     }
@@ -51,8 +51,5 @@ Route::post('register', [RegisterController::class, 'create'])->middleware('gues
 Route::get('login', [SessionsController::class, 'index'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'login'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
-
-// Route::get('author/{author:username}', [AuthorController::class, 'show']);
-// Route::get('category/{category:slug}', [CategoryController::class, 'show']);
 
 
