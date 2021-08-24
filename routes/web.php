@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PostCommentsController;
+use Illum\Exception\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,12 @@ use App\Http\Controllers\PostCommentsController;
 
 Route::get('/', [PostController::class, 'index'] );
 
-Route::get('ping', function () {
+Route::post('newsletter', function () {
+
+    request()->validate([
+        'email' => 'email|required'
+    ]);
+
     $mailchimp = new \MailchimpMarketing\ApiClient();
 
     $mailchimp->setConfig([
@@ -23,12 +29,18 @@ Route::get('ping', function () {
         'server' => 'us5'
     ]);
 
-    $response = $mailchimp->lists->addListMember('98f346c61e', [
-        'email_address' => 'mypersonalaccount@gmail.com',
-        'status' => 'subscribed'
-    ]);
+    try {
+        $response = $mailchimp->lists->addListMember('98f346c61e', [
+            'email_address' => request('email'),
+            'status' => 'subscribed'
+        ]);
+    } catch (\Exception $e) {
+        throw \Illuminate\Validation\ValidationException::withMessages([
+            'email' => 'Hmm. That email address looks a little fishy. Please try again'
+        ]);
+    }
 
-    ddd($response);
+    return redirect('/')->with('success', 'Oof Oof! You have been added to our newsletter');
 });
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
