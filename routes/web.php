@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PostCommentsController;
+use App\Services\Newsletter;
 use Illuminate\Validation\ValidationException;
 
 /*
@@ -16,24 +17,15 @@ use Illuminate\Validation\ValidationException;
 
 Route::get('/', [PostController::class, 'index'] );
 
-Route::post('newsletter', function () {
+Route::post('newsletter', function (Newsletter $newsletter) {
 
     request()->validate([
         'email' => 'email|required'
     ]);
 
-    $mailchimp = new \MailchimpMarketing\ApiClient();
-
-    $mailchimp->setConfig([
-        'apiKey' => config('services.mailchimp.key'),
-        'server' => 'us5'
-    ]);
-
     try {
-        $mailchimp->lists->addListMember('98f346c61e', [
-            'email_address' => request('email'),
-            'status' => 'subscribed'
-        ]);
+       $newsletter->subscribe(request('email'));
+
     } catch (Exception $e) {
         throw ValidationException::withMessages([
             'email' => 'Hmm. That email address looks a little fishy. Please try again'
