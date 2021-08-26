@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use Facade\FlareClient\Http\Response;
 
 class PostController extends Controller
 {
@@ -23,5 +24,10 @@ class PostController extends Controller
             'post' => $post,
             'categories' => Category::all(),
         ]);
+    }
+
+    public function create()
+    {
+        return view('create');
     }
 }

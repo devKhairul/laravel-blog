@@ -20,6 +20,8 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 Route::post('newsletter', NewsletterController::class);
 
+Route::get('admin/posts/create', [PostController::class, 'create']);
+
 Route::get('register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::get('login', [SessionsController::class, 'index'])->middleware('guest');
