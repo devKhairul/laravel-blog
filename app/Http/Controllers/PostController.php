@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
-use Facade\FlareClient\Http\Response;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -28,6 +27,28 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('create');
+        return view('create', [
+            'categories' => Category::all(),
+        ]);
+    }
+
+    public function store()
+    {
+
+        $attributes = request()->validate([
+            'title' => 'required|max:60',
+            'slug' => ['required', Rule::unique('posts', 'slug')],
+            'excerpt' => 'required|max:30',
+            'body' => 'required|min:100|max:1000',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
+
+       $attributes['user_id'] = auth()->id();
+
+       Post::create($attributes);
+
+       return redirect('/')->with('success', 'Post created successfully');
+
+
     }
 }

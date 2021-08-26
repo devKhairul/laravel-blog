@@ -6,7 +6,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Middleware\MustBeAdministrator;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +20,8 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 Route::post('newsletter', NewsletterController::class);
 
 Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
+
 
 Route::get('register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'create'])->middleware('guest');
