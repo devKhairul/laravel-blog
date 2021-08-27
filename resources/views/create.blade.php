@@ -1,6 +1,8 @@
 <x-layout>
     <section class="container mx-auto w-2/3 mt-20">
-        <h1 class="text-4xl bold pb-6 underline">Publish a new article</h1>
+        <h1 class="text-4xl font-bold pb-6 underline">
+            Publish New Post
+        </h1>
         <form method="POST" action="/admin/posts" autocomplete="off">
             @csrf
             <div class="space-y-4">
@@ -52,7 +54,7 @@
 
                 <select name="category_id" id="category_id" class="w-full border p-2 rounded">
                     @foreach ($categories as $category )
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                 </select>
 
