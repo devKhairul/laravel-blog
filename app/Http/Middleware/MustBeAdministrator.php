@@ -20,7 +20,7 @@ class MustBeAdministrator
             abort(403, 'You are not authorized to access this page');
         }
 
-        if ( auth()->user()->username !== 'lazycoder' ) {
+        if ( auth()->user()->username !== 'khairul89' ) {
             abort(403, 'You are not authorized to access this page');
         }
 

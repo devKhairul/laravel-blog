@@ -3,7 +3,7 @@
         <h1 class="text-4xl font-bold pb-6 underline">
             Publish New Post
         </h1>
-        <form method="POST" action="/admin/posts" autocomplete="off">
+        <form method="POST" action="/admin/posts" autocomplete="off" enctype="multipart/form-data">
             @csrf
             <div class="space-y-4">
                 <input type="text"
@@ -58,9 +58,14 @@
                     @endforeach
                 </select>
 
-                @foreach ($errors as $error )
-                    {{ $error }}
-                @endforeach
+                <input type="file"
+                        name="thumbnail"
+                        class="block text-sm py-3 px-4 rounded w-full border outline-none focus-within:bg-yellow-100"
+                        value="{{ old('file') }}" />
+
+                @error('file')
+                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                @enderror
 
 
               </div>
