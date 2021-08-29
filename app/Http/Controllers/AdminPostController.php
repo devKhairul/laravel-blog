@@ -58,7 +58,7 @@ class AdminPostController extends Controller
     {
         $attributes = request()->validate([
             'title' => 'required',
-            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
             'excerpt' => 'required|max:30',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
