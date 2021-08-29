@@ -44,6 +44,13 @@ class AdminPostController extends Controller
 
        return redirect('/')->with('success', 'Post created successfully');
 
+    }
 
+    public function edit(Post $post)
+    {
+        return view('admin.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 }
