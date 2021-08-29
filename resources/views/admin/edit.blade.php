@@ -3,8 +3,10 @@
         <h1 class="text-4xl font-bold pb-6 underline">
             Edit {{ $post->title }}
         </h1>
-        <form method="POST" action="/admin/posts" autocomplete="off" enctype="multipart/form-data">
+        <form method="POST" action="/admin/posts/{{ $post->id }}" autocomplete="off" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
+
             <div class="space-y-4">
                 <input type="text"
                         name="title"

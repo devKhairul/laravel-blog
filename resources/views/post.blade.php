@@ -52,7 +52,7 @@
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">
-                    <p>L{{ $post->body }}</p>
+                    <p>{{ $post->body }}</p>
                 </div>
             </div>
 

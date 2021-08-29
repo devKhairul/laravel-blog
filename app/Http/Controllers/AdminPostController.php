@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Validation\Rule;
 
 
 class AdminPostController extends Controller
@@ -28,10 +28,10 @@ class AdminPostController extends Controller
     {
 
         $attributes = request()->validate([
-            'title' => 'required|max:60',
+            'title' => 'required',
             'slug' => ['required', Rule::unique('posts', 'slug')],
             'excerpt' => 'required|max:30',
-            'body' => 'required|min:100|max:1000',
+            'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'thumbnail' => 'required|image'
         ]);
@@ -52,5 +52,27 @@ class AdminPostController extends Controller
             'post' => $post,
             'categories' => Category::all()
         ]);
+    }
+
+    public function update(Post $post)
+    {
+        $attributes = request()->validate([
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
+            'excerpt' => 'required|max:30',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'thumbnail' => 'image'
+        ]);
+
+
+        if ( isset($attributes['thumbnail']) ) {
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails', 'public');
+        }
+
+
+       $post->update($attributes);
+
+       return redirect('/')->with('success', 'Post updated successfully');
     }
 }
