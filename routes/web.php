@@ -20,16 +20,20 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 Route::post('newsletter', NewsletterController::class);
 
-Route::get('admin/posts/create', [AdminPostController::class, 'create'])->middleware('admin');
-Route::post('admin/posts', [AdminPostController::class, 'store'])->middleware('admin');
+Route::middleware(['admin'])->group(function () {
+    Route::get('admin/posts/create', [AdminPostController::class, 'create']);
+    Route::get('admin/posts', [AdminPostController::class, 'index']);
+    Route::post('admin/posts', [AdminPostController::class, 'store']);
+});
 
-Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('register', [RegisterController::class, 'index']);
+    Route::post('register', [RegisterController::class, 'create']);
+    Route::get('login', [SessionsController::class, 'index']);
+    Route::post('login', [SessionsController::class, 'login']);
+});
 
-Route::get('register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::get('login', [SessionsController::class, 'index'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'login'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 
