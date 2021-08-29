@@ -26,7 +26,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('admin/posts', [AdminPostController::class, 'store']);
     Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit']);
     Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
-    Route::delete('admin/posts/', [AdminPostController::class, 'destroy']);
+    Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy']);
 });
 
 
