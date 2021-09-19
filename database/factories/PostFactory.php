@@ -25,7 +25,8 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->paragraph(2),
-            'body' => $this->faker->paragraph(4)
+            'body' => $this->faker->paragraph(4),
+            'thumbnail' => $this->faker->image('public/storage/thumbnails',640,480, null, false),
         ];
     }
 }
